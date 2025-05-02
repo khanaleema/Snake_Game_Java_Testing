@@ -28,11 +28,10 @@ public class SnakeGameUnitTests {
     public void testInvalidKeyPressDoesNotMoveSnake() {
         Board board = new Board();
         int initialX = board.getHeadX();
-        board.setLeftDirection(false);
-        board.setRightDirection(false);
-        board.setUpDirection(false);
-        board.setDownDirection(false);
+
+        board.setRightDirection(true); 
         board.triggerMove();
+
         assertEquals("Snake moved on invalid input!", initialX, board.getHeadX());
     }
 }
