@@ -12,7 +12,7 @@ public class SnakeGameUnitTests {
         board.setRightDirection(true);
         board.setLeftDirection(false);
         board.triggerMove();
-        assertEquals(initialX + 10, board.getHeadX()); // DOT_SIZE = 10
+        assertEquals(initialX + 10, board.getHeadX()); 
     }
 
     @Test
