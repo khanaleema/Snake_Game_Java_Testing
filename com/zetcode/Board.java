@@ -46,6 +46,7 @@ public class Board extends JPanel implements ActionListener {
         dots = 3;
         score = 0;
         inGame = true;
+        paused = false;
 
         for (int z = 0; z < dots; z++) {
             x[z] = 50 - z * DOT_SIZE;
@@ -110,15 +111,12 @@ public class Board extends JPanel implements ActionListener {
         if (leftDirection) {
             x[0] -= DOT_SIZE;
         }
-
         if (rightDirection) {
             x[0] += DOT_SIZE;
         }
-
         if (upDirection) {
             y[0] -= DOT_SIZE;
         }
-
         if (downDirection) {
             y[0] += DOT_SIZE;
         }
@@ -167,19 +165,16 @@ public class Board extends JPanel implements ActionListener {
                 upDirection = false;
                 downDirection = false;
             }
-
             if ((key == KeyEvent.VK_RIGHT) && (!leftDirection)) {
                 rightDirection = true;
                 upDirection = false;
                 downDirection = false;
             }
-
             if ((key == KeyEvent.VK_UP) && (!downDirection)) {
                 upDirection = true;
                 rightDirection = false;
                 leftDirection = false;
             }
-
             if ((key == KeyEvent.VK_DOWN) && (!upDirection)) {
                 downDirection = true;
                 rightDirection = false;
@@ -189,7 +184,6 @@ public class Board extends JPanel implements ActionListener {
             if (key == KeyEvent.VK_P) {
                 paused = true;
             }
-
             if (key == KeyEvent.VK_R) {
                 paused = false;
             }
@@ -198,5 +192,61 @@ public class Board extends JPanel implements ActionListener {
                 initGame();
             }
         }
+    }
+
+    // --------- Public Test Helper Methods ------------
+
+    public void setRightDirection(boolean val) {
+        rightDirection = val;
+    }
+
+    public void setLeftDirection(boolean val) {
+        leftDirection = val;
+    }
+
+    public void setUpDirection(boolean val) {
+        upDirection = val;
+    }
+
+    public void setDownDirection(boolean val) {
+        downDirection = val;
+    }
+
+    public int getHeadX() {
+        return x[0];
+    }
+
+    public int getHeadY() {
+        return y[0];
+    }
+
+    public void triggerMove() {
+        move();
+    }
+
+    public int getDots() {
+        return dots;
+    }
+
+    public void simulateFoodEaten() {
+        dots++;
+        score++;
+    }
+
+    public void pauseGame() {
+        paused = true;
+    }
+
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setApplePosition(int ax, int ay) {
+        apple_x = ax;
+        apple_y = ay;
+    }
+
+    public void triggerCheckApple() {
+        checkApple();
     }
 }
